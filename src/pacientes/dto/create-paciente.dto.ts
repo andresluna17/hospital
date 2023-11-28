@@ -1,21 +1,18 @@
 import {
   IsEmail,
-  IsNumber,
   IsString,
-  MaxLength,
   MinLength,
+  IsNumber,
+  MaxLength,
 } from 'class-validator';
 
-export class CreateMedicoDto {
-  @IsString()
+export class CreatePacienteDto {
+  @IsNumber()
   id: number;
 
   @IsEmail()
+  @MaxLength(200)
   email: string;
-
-  @IsString()
-  @MinLength(8)
-  password: string;
 
   @IsString()
   @MaxLength(90)
@@ -36,7 +33,4 @@ export class CreateMedicoDto {
   @IsString()
   @MaxLength(90)
   city?: string;
-
-  @IsNumber()
-  professional_card_number?: number;
 }

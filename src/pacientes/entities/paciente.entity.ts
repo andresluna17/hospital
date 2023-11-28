@@ -6,10 +6,10 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity({ name: 'medicos' })
-export class Medicos {
+@Entity({ name: 'pacientes' })
+export class Paciente {
   @PrimaryGeneratedColumn()
-  medicoId: number;
+  pacienteId: number;
 
   @Column({ type: 'varchar', length: 20 })
   id: number;
@@ -35,18 +35,8 @@ export class Medicos {
   city: string;
 
   @Index()
-  @Column({ default: null })
-  professional_card_number: number;
-
-  @Index()
   @Column()
   email: string;
-
-  @Column()
-  password: string;
-
-  @Column({ default: null })
-  hashdRt: string | null;
 
   @Column({ default: true })
   isActive: boolean;

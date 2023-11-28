@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  BadRequestException,
 } from '@nestjs/common';
 import { MedicosService } from './medicos.service';
 import { CreateMedicoDto } from './dto/create-medico.dto';
@@ -16,8 +17,12 @@ export class MedicosController {
   constructor(private readonly medicosService: MedicosService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateMedicoDto) {
-    return this.medicosService.create(createUserDto);
+  create(@Body() createMedicoDto: CreateMedicoDto) {
+    const medico = this.medicosService.findOne(createMedicoDto.id);
+    if (medico) {
+      throw new BadRequestException('Medico ya registrado Verifique el Id');
+    }
+    return this.medicosService.create(createMedicoDto);
   }
 
   @Get()
