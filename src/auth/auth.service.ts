@@ -1,0 +1,105 @@
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { Tokens } from './../types';
+import { AuthDto } from './../dto/auth.dto';
+import { MedicosService } from 'src/medicos/medicos.service';
+import { CreateMedicoDto } from 'src/medicos/dto/create-medico.dto';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly medicoService: MedicosService,
+    private jwtService: JwtService,
+  ) {}
+
+  //iniciar sesión
+  async login(dto: AuthDto): Promise<Tokens> {
+    const user = await this.medicoService.findOneByEmail(dto.email);
+
+    if (!user) throw new ForbiddenException('Access Denied.');
+
+    const passwordMatches = await bcrypt.compare(dto.password, user.password);
+
+    if (!passwordMatches) throw new ForbiddenException('Access Denied.');
+
+    const tokens = await this.getTokens(user.id, user.email);
+
+    const rtHash = await this.hashPassword(tokens.refresh_token);
+
+    await this.medicoService.update(user.id, { hashdRt: rtHash });
+    return tokens;
+  }
+
+  //Cerrar sesión
+  async logout(userId: number) {
+    await this.medicoService.update(userId, { hashdRt: null });
+  }
+
+  //Refrescar sesión
+  async refreshTokens(userId: number, rt: string) {
+    const user = await this.medicoService.findOne(userId);
+
+    if (!user || !user.hashdRt) throw new ForbiddenException('Access Denied.');
+
+    const rtMatches = await bcrypt.compareSync(rt, user.hashdRt);
+
+    if (!rtMatches) throw new ForbiddenException('Access Denied.');
+
+    const tokens = await this.getTokens(user.id, user.email);
+
+    const rtHash = await this.hashPassword(tokens.refresh_token);
+
+    await this.medicoService.update(user.id, { hashdRt: rtHash });
+    return tokens;
+  }
+
+  //Registro de usuario
+  async register(dto: CreateMedicoDto): Promise<Tokens> {
+    const user = await this.medicoService.create(dto);
+
+    const tokens = await this.getTokens(user.id, user.email);
+
+    const rtHash = await this.hashPassword(tokens.refresh_token);
+
+    await this.medicoService.update(user.id, { hashdRt: rtHash });
+    return tokens;
+  }
+
+  //Generar tokens de acceso y de refrescar.
+  async getTokens(userId: number, email: string) {
+    const [at, rt] = await Promise.all([
+      this.jwtService.signAsync(
+        {
+          sub: userId,
+          email,
+        },
+        {
+          secret: process.env.JWT_SECRET,
+          expiresIn: '24h',
+        },
+      ),
+      this.jwtService.signAsync(
+        {
+          sub: userId,
+          email,
+        },
+        {
+          secret: process.env.JWT_REFRESH_SECRET,
+          expiresIn: '30d',
+        },
+      ),
+    ]);
+
+    return {
+      access_token: at,
+      refresh_token: rt,
+    };
+  }
+
+  //Encriptación de la copntraseña
+  async hashPassword(data: string) {
+    const salt = bcrypt.genSaltSync(10);
+    return bcrypt.hashSync(data, salt);
+  }
+}
