@@ -26,7 +26,7 @@ export class MedicosService {
   }
 
   async findOne(id: number) {
-    return await this.medicosRepository.findOneBy({ id: id });
+    return await this.medicosRepository.findOneBy({ medicoId: id });
   }
 
   async update(id: number, updateMedicoDto: UpdateMedicoDto) {

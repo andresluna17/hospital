@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 
 export class CreateMedicoDto {
-  @IsString()
+  @IsNumber()
   id: number;
 
   @IsEmail()

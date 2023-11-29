@@ -23,7 +23,7 @@ export class PacientesService {
   }
 
   async findOne(id: number) {
-    return await this.pacienteRepository.findOneBy({ id: id });
+    return await this.pacienteRepository.findOneBy({ pacienteId: id });
   }
 
   async update(id: number, updatePacienteDto: UpdatePacienteDto) {

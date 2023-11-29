@@ -17,8 +17,8 @@ export class MedicosController {
   constructor(private readonly medicosService: MedicosService) {}
 
   @Post()
-  create(@Body() createMedicoDto: CreateMedicoDto) {
-    const medico = this.medicosService.findOne(createMedicoDto.id);
+  async create(@Body() createMedicoDto: CreateMedicoDto) {
+    const medico = await this.medicosService.findOne(createMedicoDto.id);
     if (medico) {
       throw new BadRequestException('Medico ya registrado Verifique el Id');
     }

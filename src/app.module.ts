@@ -10,6 +10,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MedicosModule } from './medicos/medicos.module';
 import { PacientesModule } from './pacientes/pacientes.module';
+import { CitasModule } from './citas/citas.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PacientesModule } from './pacientes/pacientes.module';
     AuthModule,
     MedicosModule,
     PacientesModule,
+    CitasModule,
   ],
   controllers: [AppController],
   providers: [
