@@ -62,7 +62,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 12345645645645,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\"\r\n}",
+					"raw": "{\r\n    \"id\": 12345,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -70,13 +70,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://hospital-colmena.onrender.com/pacientes",
-					"protocol": "https",
+					"raw": "http://localhost:3000/pacientes",
+					"protocol": "http",
 					"host": [
-						"hospital-colmena",
-						"onrender",
-						"com"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
 						"pacientes"
 					]
@@ -116,9 +115,6 @@
 		},
 		{
 			"name": "medicos",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -132,15 +128,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"medico_prueba@gmail.com\",\r\n    \"password\":\"prueba123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:3000/medicos",
 					"protocol": "http",
@@ -210,13 +197,12 @@
 					"raw": "{\r\n    \"fecha\": \"2023-12-01T10:00:00.000Z\",\r\n    \"medicoId\": 1, \r\n    \"pacienteId\": 1\r\n  } "
 				},
 				"url": {
-					"raw": "https://hospital-colmena.onrender.com/citas",
-					"protocol": "https",
+					"raw": "http://localhost:3000/citas",
+					"protocol": "http",
 					"host": [
-						"hospital-colmena",
-						"onrender",
-						"com"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
 						"citas"
 					]
@@ -269,7 +255,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 123456456,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"password\": \"prueba123\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\",\r\n    \"professional_card_number\": 123465\r\n}",
+					"raw": "{\r\n    \"id\": 12345645,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"password\": \"prueba123\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\",\r\n    \"professional_card_number\": 123465\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -334,6 +320,46 @@
 							"value": null,
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ordenes-medicas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"Descripción de la orden médica 2\",\r\n    \"fechaCaducidad\": \"2023-12-10T23:59:59.999Z\",\r\n    \"especialidad\": \"Especialidad de la orden 2\",\r\n    \"citaId\": 1\r\n  }"
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/citas/orden-medica",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"citas",
+						"orden-medica"
 					]
 				}
 			},
