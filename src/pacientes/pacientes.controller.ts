@@ -18,8 +18,10 @@ export class PacientesController {
   constructor(private readonly pacientesService: PacientesService) {}
 
   @Post()
-  create(@Body() createPacienteDto: CreatePacienteDto) {
-    const paciente = this.pacientesService.findOne(createPacienteDto.id);
+  async create(@Body() createPacienteDto: CreatePacienteDto) {
+    const paciente = await this.pacientesService.findOneById(
+      createPacienteDto.id,
+    );
     if (paciente) {
       throw new BadRequestException('Paciente ya registrado Verifique el Id');
     }

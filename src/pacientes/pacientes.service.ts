@@ -22,6 +22,9 @@ export class PacientesService {
     return await this.pacienteRepository.find();
   }
 
+  async findOneById(id: number) {
+    return await this.pacienteRepository.findOneBy({ id: id });
+  }
   async findOne(id: number) {
     return await this.pacienteRepository.findOneBy({ pacienteId: id });
   }
