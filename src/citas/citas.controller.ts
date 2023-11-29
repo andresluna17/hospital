@@ -4,6 +4,8 @@ import { CitaMedica } from './entities/citas';
 import { CreateCitaDto } from './dto/create-cita.dto';
 import { PacientesService } from 'src/pacientes/pacientes.service';
 import { MedicosService } from 'src/medicos/medicos.service';
+import { OrdenMedica } from './entities/ordenes-medicas';
+import { CreateOrdenMedicaDto } from './dto/create-orden-medica.dto';
 
 @Controller('citas')
 export class CitaController {
@@ -50,5 +52,16 @@ export class CitaController {
     },
   ): Promise<CitaMedica> {
     return this.citaService.updateCitaState(citaId, newState);
+  }
+
+  @Post('orden-medica')
+  async createOrdenMedica(
+    @Body() ordenMedicaData: CreateOrdenMedicaDto,
+  ): Promise<OrdenMedica> {
+    const cita = await this.citaService.getCitaByCitaId(ordenMedicaData.citaId);
+
+    return this.citaService.createOrdenMedica(cita, {
+      ...ordenMedicaData,
+    });
   }
 }

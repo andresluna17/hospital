@@ -64,6 +64,12 @@ export class CitaService {
     });
   }
 
+  async getCitaByCitaId(citaId: number): Promise<CitaMedica> {
+    return await this.citaRepository.findOne({
+      where: { citaId },
+    });
+  }
+
   async updateCitaState(
     citaId: number,
     newState: 'ASISTIO' | 'NO ASISTIO',
