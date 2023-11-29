@@ -4,14 +4,17 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 import { CitaMedica } from './entities/citas';
+import { OrdenMedica } from './entities/ordenes-medicas';
 
 @Injectable()
 export class CitaService {
   constructor(
     @InjectRepository(CitaMedica)
     private readonly citaRepository: Repository<CitaMedica>,
+    @InjectRepository(OrdenMedica)
+    private readonly ordenMedicaRepository: Repository<OrdenMedica>,
   ) {}
 
   async createCita(citaData: Partial<CitaMedica>): Promise<CitaMedica> {
@@ -35,8 +38,14 @@ export class CitaService {
     medicoId: number,
     fecha: Date,
   ): Promise<boolean> {
+    const startOfDay = new Date(fecha);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(fecha);
+    endOfDay.setHours(23, 59, 59, 999);
+
     const existingCita = await this.citaRepository.findOne({
-      where: { medico: { medicoId }, fecha },
+      where: { medico: { medicoId }, fecha: Between(startOfDay, endOfDay) },
     });
 
     return !existingCita;
@@ -73,5 +82,14 @@ export class CitaService {
     cita.updatedAt = new Date();
 
     return await this.citaRepository.save(cita);
+  }
+
+  async createOrdenMedica(
+    cita: CitaMedica,
+    ordenData: Partial<OrdenMedica>,
+  ): Promise<OrdenMedica> {
+    const ordenMedica = this.ordenMedicaRepository.create(ordenData);
+    ordenMedica.cita = cita;
+    return await this.ordenMedicaRepository.save(ordenMedica);
   }
 }

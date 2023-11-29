@@ -9,7 +9,9 @@ import {
   ManyToOne,
   JoinColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { OrdenMedica } from './ordenes-medicas';
 
 @Entity({ name: 'citas_medicas' })
 export class CitaMedica {
@@ -27,6 +29,12 @@ export class CitaMedica {
   @ManyToOne(() => Paciente, { eager: true })
   @JoinColumn({ name: 'pacienteId' })
   paciente: Paciente;
+
+  @OneToMany(() => OrdenMedica, (orden) => orden.cita, {
+    eager: true,
+    cascade: true,
+  })
+  ordenesMedicas: OrdenMedica[];
 
   @Column({ default: 'PROGRAMADA' })
   estado: 'PROGRAMADA' | 'ASISTIO' | 'NO ASISTIO';

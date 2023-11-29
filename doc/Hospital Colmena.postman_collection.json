@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "411501a5-18fb-41af-853e-666455b74026",
+		"name": "Hospital Colmena",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20509999"
+	},
+	"item": [
+		{
+			"name": "medicos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 12345645,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"password\": \"prueba123\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\",\r\n    \"professional_card_number\": 123465\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/medicos",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"medicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pacientes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 12345645645645,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/pacientes",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pacientes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/pacientes",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "medicos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"medico_prueba@gmail.com\",\r\n    \"password\":\"prueba123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/medicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"medico_prueba@gmail.com\",\r\n    \"password\":\"prueba123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "citas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2023-12-01T10:00:00.000Z\",\r\n    \"medicoId\": 1, \r\n    \"pacienteId\": 1\r\n  } "
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/citas",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"citas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "citas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/citas",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"citas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 123456456,\r\n    \"email\": \"medico_prueba@gmail.com\",\r\n    \"password\": \"prueba123\",\r\n    \"first_name\": \"Test\",\r\n    \"last_name\": \"Prueba\",\r\n    \"phone\": \"12131231\",\r\n    \"address\": \"calle falsa 123\",\r\n    \"city\": \"Bogota\",\r\n    \"professional_card_number\": 123465\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/auth/register",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar-estado",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0ODc4NzgwIiwiZW1haWwiOiJtZWRpY29fcHJ1ZWJhQGdtYWlsLmNvbSIsImlhdCI6MTcwMTIxMDUzNSwiZXhwIjoxNzAxMjk2OTM1fQ.mDuaaThSm5n7hCABSNvBU25bPC-Y7cOYelcawnra0vw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"citaId\": 2, \r\n    \"newState\": \"ASISTIO\"\r\n  }"
+				},
+				"url": {
+					"raw": "https://hospital-colmena.onrender.com/citas/actualizar-estado",
+					"protocol": "https",
+					"host": [
+						"hospital-colmena",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"citas",
+						"actualizar-estado"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

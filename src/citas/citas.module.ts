@@ -5,10 +5,11 @@ import { CitaService } from './citas.service';
 import { CitaController } from './citas.controller';
 import { MedicosModule } from 'src/medicos/medicos.module';
 import { PacientesModule } from 'src/pacientes/pacientes.module';
+import { OrdenMedica } from './entities/ordenes-medicas';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([CitaMedica]),
+    TypeOrmModule.forFeature([CitaMedica, OrdenMedica]),
     PacientesModule,
     MedicosModule,
   ],
